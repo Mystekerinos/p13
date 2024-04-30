@@ -1,44 +1,69 @@
-// editName.jsx
-
 import React, { useState } from "react";
 
-function EditName() {
-  // State variables to store the first name and last name
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+const EditName = ({ fullName, onSave }) => {
+  const [editing, setEditing] = useState(false);
+  const [inputFirstName, setInputFirstName] = useState(
+    fullName ? fullName.split(" ")[0] : ""
+  );
+  const [inputLastName, setInputLastName] = useState(
+    fullName ? fullName.split(" ")[1] : ""
+  );
 
-  // Function to handle changes in the first name input
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+  const handleSave = () => {
+    const newName = `${inputFirstName} ${inputLastName}`;
+    onSave(newName);
+    setEditing(false);
   };
 
-  // Function to handle changes in the last name input
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
+  const handleCancel = () => {
+    setInputFirstName(fullName ? fullName.split(" ")[0] : "");
+    setInputLastName(fullName ? fullName.split(" ")[1] : "");
   };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSave();
+    }
+  };
+
+  if (!editing) {
+    return (
+      <div className="header">
+        <button className="edit-button" onClick={() => setEditing(true)}>
+          Edit Name
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      {/* First name input field */}
-      <label>
-        First Name:
-        <input type="text" value={firstName} onChange={handleFirstNameChange} />
-      </label>
-      <br />
-
-      {/* Last name input field */}
-      <label>
-        Last Name:
-        <input type="text" value={lastName} onChange={handleLastNameChange} />
-      </label>
-      <br />
-
-      {/* Display the edited name */}
-      <p>
-        Edited Name: {firstName} {lastName}
-      </p>
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Tony"
+          value={inputFirstName}
+          onChange={(e) => setInputFirstName(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+        <input
+          type="text"
+          placeholder="Jarvis"
+          value={inputLastName}
+          onChange={(e) => setInputLastName(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+      </div>
+      <div className="button-container">
+        <button className="buttons" onClick={handleSave}>
+          Save
+        </button>
+        <button className="buttons" onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default EditName;
