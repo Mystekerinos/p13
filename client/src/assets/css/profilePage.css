@@ -1,0 +1,13 @@
+
+
+.Name {
+    font-size: 1.5rem;
+}
+
+.MainProfile {
+    background-color: #e0e6ed;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

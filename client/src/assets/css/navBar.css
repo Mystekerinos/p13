@@ -42,6 +42,17 @@
   margin-right: 10px;
 }
 
+
+.main-nav-link {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 0.2rem;
+justify-content: center;
+height: clamp(20%, 5vw, 40%);
+font-weight: bold;
+color: #2c3e50;
+}
 .main-nav-logo-image {
   max-width: 100%;
   width: 126px;

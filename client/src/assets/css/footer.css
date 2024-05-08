@@ -45,10 +45,7 @@ body {
     padding: 5px 20px;
 }
 
-.main-nav a {
-    font-weight: bold;
-    color: #2c3e50;
-}
+
 
 .main-nav a.router-link-exact-active {
     color: #42b983;
@@ -168,14 +165,7 @@ body {
     color: #fff;
 }
 
-.sign-in-content {
-    box-sizing: border-box;
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    padding: 2rem;
-}
+
 
 .sign-in-icon {
     font-size: 5rem;

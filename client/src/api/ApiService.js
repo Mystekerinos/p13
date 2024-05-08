@@ -71,3 +71,22 @@ export const updateUserProfile = async (jwtToken, updatedProfile) => {
     console.error("Error updating user profile:", error);
   }
 };
+export const logoutUser = async (jwtToken) => {
+  try {
+    // Effectuer une requête HTTP pour déconnecter l'utilisateur
+    const response = await axios.post(
+      "http://localhost:3001/api/v1/user/logout",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+    );
+    return response.data; // Supposons que votre API renvoie un message de succès
+  } catch (error) {
+    // Gérer les erreurs en cas de problème lors de la déconnexion
+    console.error("Error logging out:", error);
+    throw new Error("Une erreur s'est produite lors de la déconnexion.");
+  }
+};
