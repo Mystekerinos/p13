@@ -34,7 +34,10 @@ const Login = () => {
     try {
       const response = await loginUser(email, password);
       console.log("Login API response:", response);
+      console.log("response.success", response.success);
       if (response.success) {
+        console.log(response.token);
+        window.localStorage.setItem("jwtToken", response.token);
         console.log("User logged in");
         navigate("/profile");
       } else {
@@ -47,7 +50,7 @@ const Login = () => {
       setIsSubmitting(false); // Réinitialise l'état de la soumission en cours
     }
   };
-
+  console.log("localStorage", localStorage);
   useEffect(() => {
     if (localStorage.getItem("rememberMe") === "true") {
       const storedEmail = localStorage.getItem("email");
@@ -56,7 +59,10 @@ const Login = () => {
       if (storedPassword) setPassword(storedPassword);
       setRememberMe(false);
     }
-
+    console.log(
+      "localStorage.getItem(jwtToken)",
+      localStorage.getItem("jwtToken")
+    );
     if (localStorage.getItem("jwtToken")) {
       console.log("User logged in from local storage");
       navigate("/profile");
