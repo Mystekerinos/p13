@@ -88,9 +88,8 @@ export const logoutUser = async (jwtToken) => {
         },
       }
     );
-    return response.data; // Supposons que votre API renvoie un message de succès
+    return response.data;
   } catch (error) {
-    // Gérer les erreurs en cas de problème lors de la déconnexion
     console.error("Error logging out:", error);
     throw new Error("Une erreur s'est produite lors de la déconnexion.");
   }

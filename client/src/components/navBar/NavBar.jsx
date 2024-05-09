@@ -1,12 +1,15 @@
 import React from "react";
-import LogOut from "../loginOut/LoginOut";
 import { Link } from "react-router-dom";
 import argentBankLogo from "../../assets/images/argentBankLogo.png";
 import { CircleUserRound } from "lucide-react";
 import "../../assets/css/navBar.css";
 
-const Navbar = ({ showLogout, displayName }) => {
+const Navbar = ({ displayName }) => {
   const isLoggedIn = localStorage.getItem("jwtToken") !== null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+  };
 
   return (
     <nav className="main-nav">
@@ -19,23 +22,23 @@ const Navbar = ({ showLogout, displayName }) => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div className="nav-item">
-        {showLogout && isLoggedIn ? (
+        {isLoggedIn ? (
           <>
             <div className="main-nav-item">
+              <CircleUserRound />
               <i className="fa fa-user-circle"></i>
               {displayName}
             </div>
-            <LogOut />
+            <Link className="main-nav-item" to="/login" onClick={handleLogout}>
+              <div className="main-nav-link">Logout</div>
+            </Link>
           </>
         ) : (
-          <Link
-            className="main-nav-item"
-            to={isLoggedIn ? "/profile" : "/login"}
-          >
+          <Link className="main-nav-item" to="/login">
             <div className="main-nav-link">
               <CircleUserRound />
               <i className="fa fa-user-circle"></i>
-              {isLoggedIn ? displayName : "Sign In"}
+              Sign In
             </div>
           </Link>
         )}
