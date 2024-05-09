@@ -10,7 +10,7 @@ export const loginUser = async (email, password) => {
       }
     );
     const jwtToken = response.data.body.token;
-    return jwtToken;
+    return { success: true, token: jwtToken };
   } catch (error) {
     console.error("Error logging in:", error);
 
@@ -23,6 +23,11 @@ export const loginUser = async (email, password) => {
         console.error("Internal server error.");
       }
     }
+
+    return {
+      success: false,
+      message: "Une erreur s'est produite lors de la connexion.",
+    };
   }
 };
 
