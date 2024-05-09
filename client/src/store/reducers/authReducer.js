@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, fetchUserProfile } from "../actions/userActions";
+import { authenticateUser, fetchUserProfile } from "../actions/userActions";
 
 const userSlice = createSlice({
   name: "user",
@@ -22,7 +22,7 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(authenticateUser.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },
