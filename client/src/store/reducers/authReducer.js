@@ -6,21 +6,36 @@ const userSlice = createSlice({
   initialState: {
     profile: null,
     error: null,
-    isLoggedIn: false,
+    firstName: null,
+    lastName: null,
+    token: null,
   },
   reducers: {
     logoutUser: (state) => {
       state.profile = null;
-      state.isLoggedIn = false;
+      state.firstName = null;
+      state.lastName = null;
+      state.token = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.profile = action.payload;
+        state.token = action.payload.token;
+        console.log(
+          "Token updated in fetchUserProfile.fulfilled:",
+          state.token
+        );
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+      .addCase(authenticateUser.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        console.log(
+          "Token updated in authenticateUser.fulfilled:",
+          state.token
+        );
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.error = action.error.message;

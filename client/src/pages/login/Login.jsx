@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CircleUserRound } from "lucide-react";
-import { loginUser } from "../../api/ApiService"; // Import de la fonction loginUser depuis le fichier userApi.js
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../api/ApiService";
 import Navbar from "../../components/navBar/NavBar";
 import Footer from "../../components/footer/Footer";
 import "../../assets/css/login.css";
+import { authenticateUser } from "../../store/actions/userActions";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [customError, setCustomError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Nouvel état pour gérer la soumission en cours
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
-  const isMounted = useRef(true); // Utilisation de useRef pour suivre le montage du composant
+  const dispatch = useDispatch(); // Obtention de la fonction dispatch
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleRememberMeChange = (event) => setRememberMe(event.target.checked);
 
+  const loginState = useSelector((state) => state.user); // Sélection de l'état de connexion depuis Redux
+  console.log("Token after authentication:", loginState.token); // Ajout du log
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Vérifie si une soumission est déjà en cours
     if (isSubmitting) {
       return;
     }
 
-    setIsSubmitting(true); // Définit l'état de la soumission en cours sur true
+    setIsSubmitting(true);
 
-    console.log("Form submitted");
     try {
+      console.log("Submitting form..."); // Ajout du log
       const response = await loginUser(email, password);
       console.log("Login API response:", response);
-      console.log("response.success", response.success);
       if (response.success) {
-        console.log(response.token);
-        window.localStorage.setItem("jwtToken", response.token);
-        console.log("User logged in");
-        navigate("/profile");
+        // Dispatch de l'action Redux pour authentifier l'utilisateur
+        dispatch(authenticateUser({ email, password }));
       } else {
         setCustomError(response.message);
       }
@@ -47,32 +47,17 @@ const Login = () => {
       console.error("Erreur lors de la connexion :", error);
       setCustomError("Une erreur s'est produite lors de la connexion.");
     } finally {
-      setIsSubmitting(false); // Réinitialise l'état de la soumission en cours
+      setIsSubmitting(false);
     }
   };
-  console.log("localStorage", localStorage);
-  useEffect(() => {
-    if (localStorage.getItem("rememberMe") === "true") {
-      const storedEmail = localStorage.getItem("email");
-      const storedPassword = localStorage.getItem("password");
-      if (storedEmail) setEmail(storedEmail);
-      if (storedPassword) setPassword(storedPassword);
-      setRememberMe(false);
-    }
-    console.log(
-      "localStorage.getItem(jwtToken)",
-      localStorage.getItem("jwtToken")
-    );
-    if (localStorage.getItem("jwtToken")) {
-      console.log("User logged in from local storage");
-      navigate("/profile");
-    }
 
-    // Nettoyage du composant lorsqu'il est démonté
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
+  // Utilisation de useEffect pour effectuer des actions après la connexion réussie
+  useEffect(() => {
+    if (loginState.token) {
+      navigate("/profile");
+      console.log("Navigating to profile page...");
+    }
+  }, [loginState.token, navigate]);
 
   return (
     <>
@@ -124,9 +109,11 @@ const Login = () => {
               className="signin-button"
               disabled={isSubmitting}
             >
-              {" "}
-              {/* Désactive le bouton lors de la soumission du formulaire */}
-              Sign In
+              {isSubmitting ? (
+                <div className="login_wrapper_form_spinner"></div>
+              ) : (
+                "Sign In"
+              )}
             </button>
           </form>
         </section>

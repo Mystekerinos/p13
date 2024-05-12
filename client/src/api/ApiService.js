@@ -10,6 +10,7 @@ export const loginUser = async (email, password) => {
       }
     );
     const jwtToken = response.data.body.token;
+    console.log("Token received from loginUser:", jwtToken);
     return { success: true, token: jwtToken };
   } catch (error) {
     console.error("Error logging in:", error);
@@ -74,23 +75,5 @@ export const updateUserProfile = async (jwtToken, updatedProfile) => {
     return response.data.body;
   } catch (error) {
     console.error("Error updating user profile:", error);
-  }
-};
-export const logoutUser = async (jwtToken) => {
-  try {
-    // Effectuer une requête HTTP pour déconnecter l'utilisateur
-    const response = await axios.post(
-      "http://localhost:3001/api/v1/user/logout",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error logging out:", error);
-    throw new Error("Une erreur s'est produite lors de la déconnexion.");
   }
 };

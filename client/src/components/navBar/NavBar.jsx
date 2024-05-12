@@ -1,14 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import argentBankLogo from "../../assets/images/argentBankLogo.png";
+import { useSelector, useDispatch } from "react-redux";
 import { CircleUserRound } from "lucide-react";
+import { logoutUser } from "../../store/reducers/authReducer";
 import "../../assets/css/navBar.css";
 
 const Navbar = ({ displayName }) => {
-  const isLoggedIn = localStorage.getItem("jwtToken") !== null;
+  const token = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Hook pour la navigation
 
   const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
+    dispatch(logoutUser());
+    // Redirection vers la page de login après la déconnexion
+    navigate("/login");
   };
 
   return (
@@ -22,16 +28,16 @@ const Navbar = ({ displayName }) => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div className="nav-item">
-        {isLoggedIn ? (
+        {token !== null ? (
           <>
             <div className="main-nav-item">
               <CircleUserRound />
               <i className="fa fa-user-circle"></i>
               {displayName}
             </div>
-            <Link className="main-nav-item" to="/login" onClick={handleLogout}>
+            <div className="main-nav-item" onClick={handleLogout}>
               <div className="main-nav-link">Logout</div>
-            </Link>
+            </div>
           </>
         ) : (
           <Link className="main-nav-item" to="/login">

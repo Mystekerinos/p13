@@ -5,22 +5,6 @@ import {
   updateUserProfile as updateUserProfileApi,
 } from "../../api/ApiService";
 
-import { logoutUser as logoutUserApi } from "../../api/ApiService";
-
-/**
- * Action asynchrone pour déconnecter un utilisateur.
- * Utilise la méthode `logoutUser` pour envoyer une requête de déconnexion.
- * Si la requête réussit, retourne un message de succès.
- * En cas d'erreur, rejette la promesse avec le message d'erreur.
- */
-export const logoutUser = createAsyncThunk("user/logoutUser", async () => {
-  try {
-    const response = await logoutUserApi();
-    return response.data; // Suppose que votre API renvoie un message de succès
-  } catch (error) {
-    throw new Error(error.message);
-  }
-});
 /**
  * Action asynchrone pour authentifier un utilisateur.
  * Utilise la méthode `loginUser`pour envoyer une requête d'authentification.
@@ -36,12 +20,13 @@ export const authenticateUser = createAsyncThunk(
 
 /**
  * Action asynchrone pour récupérer le profil d'un utilisateur.
- * Utilise la méthode `getUserProfile` pour envoyer une requête pour les données de profil de l'utilisateur.
+ * Utilise le token stocké dans l'état de Redux pour envoyer une requête pour les données de profil de l'utilisateur.
  * Si la requête réussit, retourne les données du profil de l'utilisateur associé à ce token
  */
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
-  async (token) => {
+  async (_, { getState }) => {
+    const { token } = getState().user; // Obtenez le token de l'état de Redux
     const userProfile = await getUserProfileApi(token);
     return userProfile;
   }
@@ -55,8 +40,9 @@ export const fetchUserProfile = createAsyncThunk(
  */
 export const updateUserProfile = createAsyncThunk(
   "user/updateUserProfile",
-  async ({ token, updatedProfile }, { rejectWithValue }) => {
+  async ({ updatedProfile }, { getState, rejectWithValue }) => {
     try {
+      const { token } = getState().user; // Obtenez le token de l'état de Redux
       const data = await updateUserProfileApi(token, updatedProfile);
       return data;
     } catch (error) {

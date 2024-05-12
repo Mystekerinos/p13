@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {
   fetchUserProfile,
   updateUserProfile,
-  logoutUser,
 } from "../../store/actions/userActions";
 import Account from "../../components/account/Account";
 import EditName from "../../components/editName/EditName";
@@ -12,8 +11,9 @@ import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navBar/NavBar";
 
 const ProfilePage = () => {
-  const profile = useSelector((state) => state.auth.profile);
-  const error = useSelector((state) => state.auth.error);
+  const profile = useSelector((state) => state.user.profile);
+  const error = useSelector((state) => state.user.error);
+  const token = useSelector((state) => state.user.token);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,12 +27,11 @@ const ProfilePage = () => {
 
   const handleNameUpdate = async (newName) => {
     try {
-      const jwtToken = localStorage.getItem("jwtToken");
       const updatedProfile = {
         firstName: newName.split(" ")[0],
         lastName: newName.split(" ")[1],
       };
-      dispatch(updateUserProfile({ token: jwtToken, updatedProfile }));
+      dispatch(updateUserProfile({ token: token, updatedProfile }));
       setDisplayName(newName);
     } catch (error) {
       console.error("Erreur lors de la mise à jour du nom :", error);
@@ -48,19 +47,9 @@ const ProfilePage = () => {
     }
   }, [dispatch, navigate]);
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("jwtToken");
-    navigate("/login");
-  };
-
   return (
     <>
-      <Navbar
-        showLogout={true}
-        displayName={displayName}
-        onLogout={handleLogout}
-      />
+      <Navbar showLogout={true} displayName={displayName} />
       {error && <p className="error-message">Erreur : {error}</p>}
       <div className="MainProfile">
         <div className="header">
