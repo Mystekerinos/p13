@@ -1,3 +1,4 @@
+// userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { authenticateUser, fetchUserProfile } from "../actions/userActions";
 
@@ -6,22 +7,26 @@ const userSlice = createSlice({
   initialState: {
     profile: null,
     error: null,
-    firstName: null,
-    lastName: null,
     token: null,
   },
   reducers: {
     logoutUser: (state) => {
       state.profile = null;
-      state.firstName = null;
-      state.lastName = null;
       state.token = null;
+    },
+    updateName: (state, action) => {
+      const { firstName, lastName } = action.payload;
+      if (state.profile) {
+        state.profile.firstName = firstName;
+        state.profile.lastName = lastName;
+      }
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.token = action.payload.token;
+        state.profile = action.payload.profile;
         console.log(
           "Token updated in fetchUserProfile.fulfilled:",
           state.token

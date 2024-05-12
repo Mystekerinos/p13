@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircleUserRound } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../api/ApiService";
 import Navbar from "../../components/navBar/NavBar";
@@ -16,14 +15,14 @@ const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Obtention de la fonction dispatch
+  const dispatch = useDispatch();
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleRememberMeChange = (event) => setRememberMe(event.target.checked);
 
-  const loginState = useSelector((state) => state.user); // Sélection de l'état de connexion depuis Redux
-  console.log("Token after authentication:", loginState.token); // Ajout du log
+  const loginState = useSelector((state) => state.user);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,11 +33,10 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting form..."); // Ajout du log
+      console.log("Submitting form...");
       const response = await loginUser(email, password);
       console.log("Login API response:", response);
       if (response.success) {
-        // Dispatch de l'action Redux pour authentifier l'utilisateur
         dispatch(authenticateUser({ email, password }));
       } else {
         setCustomError(response.message);
@@ -51,7 +49,6 @@ const Login = () => {
     }
   };
 
-  // Utilisation de useEffect pour effectuer des actions après la connexion réussie
   useEffect(() => {
     if (loginState.token) {
       navigate("/profile");
@@ -66,7 +63,6 @@ const Login = () => {
         <section className="login-content">
           <div className="login_wrapper">
             <div className="login_wrapper_title">
-              <CircleUserRound />
               <h1>Sign in</h1>
             </div>
           </div>
