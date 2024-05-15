@@ -11,20 +11,11 @@ export const loginUser = async (email, password) => {
     );
     const jwtToken = response.data.body.token;
     console.log("Token received from loginUser:", jwtToken);
+    // Stockez le token dans l'état global de votre application ici
     return { success: true, token: jwtToken };
   } catch (error) {
     console.error("Error logging in:", error);
-
-    if (error.response) {
-      const errorCode = error.response.status;
-
-      if (errorCode === 400) {
-        console.error("Invalid fields or bad request.");
-      } else if (errorCode === 500) {
-        console.error("Internal server error.");
-      }
-    }
-
+    // Gérez les erreurs de connexion ici
     return {
       success: false,
       message: "Une erreur s'est produite lors de la connexion.",
@@ -34,6 +25,7 @@ export const loginUser = async (email, password) => {
 
 export const getUserProfile = async (jwtToken) => {
   try {
+    console.log("Token sent to getUserProfile:", jwtToken);
     const response = await axios.post(
       "http://localhost:3001/api/v1/user/profile",
       {},

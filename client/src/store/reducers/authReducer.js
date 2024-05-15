@@ -1,6 +1,10 @@
 // userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { authenticateUser, fetchUserProfile } from "../actions/userActions";
+import {
+  authenticateUser,
+  fetchUserProfile,
+  updateUserProfile,
+} from "../actions/userActions";
 
 const userSlice = createSlice({
   name: "user",
@@ -36,7 +40,8 @@ const userSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
-        state.token = action.payload.token;
+        state.token = action.payload.token.token;
+
         console.log(
           "Token updated in authenticateUser.fulfilled:",
           state.token
@@ -44,6 +49,15 @@ const userSlice = createSlice({
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.profile = action.payload.profile;
+        state.error = null; // Réinitialiser l'erreur
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
+        state.error = action.payload
+          ? action.payload
+          : "Erreur lors de la mise à jour du profil utilisateur.";
       });
   },
 });

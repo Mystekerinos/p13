@@ -2,10 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { fetchUserProfile, updateName } from "../../store/actions/userActions";
+import {
+  fetchUserProfile,
+  updateName,
+  updateUserProfile,
+} from "../../store/actions/userActions";
 import Account from "../../components/account/Account";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navBar/NavBar";
+import EditName from "../../components/editName/EditName";
 
 const ProfilePage = () => {
   const profile = useSelector((state) => state.user.profile);
@@ -16,13 +21,19 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const [displayName, setDisplayName] = useState("");
+  console.log("displayName", displayName);
 
   useEffect(() => {
-    if (profile) {
-      setDisplayName(`${profile.firstName} ${profile.lastName}`);
+    console.log("profile", profile);
+    if (
+      profile &&
+      profile.body &&
+      profile.body.firstName &&
+      profile.body.lastName
+    ) {
+      setDisplayName(`${profile.body.firstName} ${profile.body.lastName}`);
     }
   }, [profile]);
-
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -32,10 +43,18 @@ const ProfilePage = () => {
 
     if (location.state) {
       const { firstName, lastName } = location.state;
+      // Dispatch de l'action updateName avec les nouveaux prénom et nom
       dispatch(updateName(firstName, lastName));
     }
   }, [dispatch, navigate, location.state, token]);
-
+  console.log("displayName", displayName);
+  const handleSaveName = (newName) => {
+    const [newFirstName, newLastName] = newName.split(" ");
+    // Dispatch de l'action updateUserProfile avec le nouveau nom
+    dispatch(
+      updateUserProfile({ firstName: newFirstName, lastName: newLastName })
+    );
+  };
   return (
     <>
       <Navbar showLogout={true} displayName={displayName} />
@@ -47,6 +66,7 @@ const ProfilePage = () => {
             <br /> <div className="Name">{displayName}</div>
             <br />
           </h1>
+          <EditName fullName={displayName} onSave={handleSaveName} />
         </div>
         <h2 className="sr-only">Comptes</h2>
         <Account />
