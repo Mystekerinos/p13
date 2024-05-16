@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../assets/css/editName.css";
 
 const EditName = ({ fullName, onSave }) => {
   const [editing, setEditing] = useState(false);
@@ -40,6 +41,7 @@ const EditName = ({ fullName, onSave }) => {
     <div>
       <div className="input-container">
         <input
+          className="input"
           type="text"
           placeholder="Tony"
           value={inputFirstName}
@@ -47,6 +49,7 @@ const EditName = ({ fullName, onSave }) => {
           onKeyDown={handleKeyPress}
         />
         <input
+          className="input"
           type="text"
           placeholder="Jarvis"
           value={inputLastName}

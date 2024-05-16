@@ -1,56 +1,65 @@
-.account {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: null;
-    width: 80%;
-    padding: 2rem;
-    /* background-color: $color-light; */
-}
-
-.account.sm {
+.main {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 2rem;
+    align-items: center;
+    background-color: #12002b;
+    color: #fff;
+    padding: 2rem;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    text-align: left;
 }
 
 .account_description {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    text-transform: capitalize;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
 }
 
-.account_description h3 {
+.account_title {
+    font-size: 1rem;
     font-weight: normal;
+    margin: 0;
 }
 
-.account_description p:nth-child(2) {
+.account_amount {
+    font-size: 2.5rem;
     font-weight: bold;
-    font-size: clamp(2.5rem, 3.5vw, 4rem);
+    margin: 0;
+}
+
+.account_amount_description {
+    margin: 0;
 }
 
 .account_btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 8px;
+    font-size: 1.1rem;
     font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    background-color: #007bff;
+    margin-top: 1rem;
+    background-color: #00bc77;
     color: #fff;
-    border: 1px solid #007bff;
+    border: none;
+    cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .account_btn:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #007f56;
 }

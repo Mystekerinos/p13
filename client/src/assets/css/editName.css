@@ -2,12 +2,12 @@
   width: 100px;
 }
 
-.input::placeholder {
+.input-placeholder {
   color: #c4c4c4;
 }
 
 @media (min-width: 420px) {
-  .input {
+  .input-large {
     width: 200px;
   }
 }
@@ -34,7 +34,7 @@
   transform: scale(1.06);
 }
 
-.buttons:focus {
+.buttons-focus {
   box-shadow: 0px 0px 3px 1px blue;
 }
 
@@ -53,7 +53,7 @@
   font-weight: bold;
   padding: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out 0s;
 }
 
 .edit-button:hover {
