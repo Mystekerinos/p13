@@ -61,8 +61,8 @@ const ProfilePage = () => {
       {error && <p className="error-message">Erreur : {error}</p>}
       <div className="MainProfile">
         <div className="header">
-          <h1 className="profile-title">
-            Bienvenue
+          <h1>
+            Welcome Back
             <br /> <div className="Name">{displayName}</div>
             <br />
           </h1>

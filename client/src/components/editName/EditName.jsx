@@ -29,11 +29,11 @@ const EditName = ({ fullName, onSave }) => {
 
   if (!editing) {
     return (
-      <div className="header">
+      <>
         <button className="edit-button" onClick={() => setEditing(true)}>
           Edit Name
         </button>
-      </div>
+      </>
     );
   }
 
