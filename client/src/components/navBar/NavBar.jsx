@@ -36,7 +36,7 @@ const Navbar = ({ displayName }) => {
               {displayName}
             </div>
             <div className="main-nav-item" onClick={handleLogout}>
-              <div className="main-nav-link">Logout</div>
+              <div className="main-nav-link">Sign out</div>
             </div>
           </>
         ) : (

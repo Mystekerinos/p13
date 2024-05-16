@@ -1,74 +1,56 @@
-/* AccountStyles.css */
-
-.AccountWrapper {
+.account {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
-    background-color: #fff;
+    gap: null;
     width: 80%;
-    margin: 0 auto;
+    padding: 2rem;
+    /* background-color: $color-light; */
+}
+
+.account.sm {
+    display: flex;
     flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    text-align: left;
-    margin-bottom: 2rem;
+    text-align: center;
+    gap: 2rem;
 }
 
-@media (min-width: 720px) {
-    .AccountWrapper {
-        flex-direction: row;
-    }
+.account_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-transform: capitalize;
+    font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
-.AccountContentWrapperCta {
-    @media (min-width: 720px) {
-        flex: 0;
-    }
-}
-
-.AccountContentWrapper {
-    width: 100%;
-    flex: 1;
-}
-
-.AccountTitle {
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
+.account_description h3 {
     font-weight: normal;
 }
 
-.AccountAmount {
-    margin: 0;
-    font-size: 2rem;
+.account_description p:nth-child(2) {
     font-weight: bold;
+    font-size: clamp(2.5rem, 3.5vw, 4rem);
 }
 
-@media (min-width: 720px) {
-    .AccountAmount {
-        font-size: 2.5rem;
-    }
-}
-
-.AccountAmountDescription {
-    margin: 0;
-}
-
-.TransactionButton {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
+.account_btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: #007bff;
     color: #fff;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-@media (min-width: 720px) {
-    .TransactionButton {
-        width: 200px;
-    }
+.account_btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
