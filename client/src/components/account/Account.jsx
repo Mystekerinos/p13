@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/css/account.css";
+import { useNavigate } from "react-router-dom";
 const accounts = [
   {
     id: 1,
@@ -22,6 +23,11 @@ const accounts = [
 ];
 
 const Account = () => {
+  const navigate = useNavigate();
+
+  const handleViewTransactions = () => {
+    navigate("/transactions");
+  };
   return (
     <>
       {accounts.map((account) => (
@@ -31,7 +37,11 @@ const Account = () => {
             <p>$ {account.balance.toLocaleString("en")}</p>
             <p>{account.type} balance</p>
           </div>
-          <button className="account_btn" type="button">
+          <button
+            className="account_btn"
+            type="button"
+            onClick={handleViewTransactions}
+          >
             View transactions
           </button>
         </article>

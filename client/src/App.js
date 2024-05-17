@@ -4,6 +4,7 @@ import ProfilePage from "./pages/profilePage/ProfilePage";
 import Login from "./pages/login/Login";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import Home from "./pages/home/Home";
+import Transactions from "./pages/transactions/Transactions";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
