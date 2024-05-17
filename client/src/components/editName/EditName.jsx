@@ -11,8 +11,9 @@ const EditName = ({ fullName, onSave }) => {
   );
 
   const handleSave = () => {
-    const newName = `${inputFirstName} ${inputLastName}`;
-    onSave(newName);
+    const firstName = `${inputFirstName}`;
+    const lastName = `${inputLastName}`;
+    onSave(firstName, lastName);
     setEditing(false);
   };
 

@@ -36,10 +36,3 @@ export const updateUserProfile = createAsyncThunk(
     return { profile };
   }
 );
-
-export const updateName = (firstName, lastName) => {
-  return {
-    type: "user/updateName",
-    payload: { firstName, lastName },
-  };
-};

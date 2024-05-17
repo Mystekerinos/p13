@@ -1,4 +1,3 @@
-// userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import {
   authenticateUser,
@@ -9,13 +8,13 @@ import {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    profile: null,
+    profile: {},
     error: null,
     token: null,
   },
   reducers: {
     logoutUser: (state) => {
-      state.profile = null;
+      state.profile = {};
       state.token = null;
     },
     updateName: (state, action) => {
@@ -31,27 +30,20 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.token = action.payload.token;
         state.profile = action.payload.profile;
-        console.log(
-          "Token updated in fetchUserProfile.fulfilled:",
-          state.token
-        );
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.error = action.error.message;
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.token = action.payload.token.token;
-
-        console.log(
-          "Token updated in authenticateUser.fulfilled:",
-          state.token
-        );
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.error = action.error.message;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
+        state.profile.firstName = action.payload.profile.firstName;
+        state.profile.lastName = action.payload.profile.lastName;
         state.error = null; // Réinitialiser l'erreur
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
