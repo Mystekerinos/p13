@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../../components/footer/Footer";
 import "../../assets/css/transactions.css";
 import Navbar from "../../components/navBar/NavBar";
+import Collapse from "../../components/collapse/Collapse";
 
 const transactions = [
   {
@@ -47,32 +48,63 @@ const transactions = [
     balance: "$2187.79",
   },
 ];
-
+const accountTransactions = [
+  {
+    id: 1,
+    name: "checking (x8349)",
+    balance: 2082.79,
+    type: "Available",
+  },
+];
 const Transactions = () => {
+  const accountTransaction = accountTransactions[0];
   return (
     <>
       <Navbar />
       <main className="main bg-dark">
-        <table className="transaction-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Amount</th>
-              <th>Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction) => (
-              <tr key={transaction.id}>
-                <td>{transaction.date}</td>
-                <td>{transaction.description}</td>
-                <td>{transaction.amount}</td>
-                <td>{transaction.balance}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <article className="account">
+          <div className="account_description_transactions">
+            <h3>argent bank {accountTransaction.name}</h3>
+            <p className="balance">
+              $ {accountTransaction.balance.toLocaleString("en")}
+            </p>
+            <p className="balance_price">{accountTransaction.type} balance</p>
+          </div>
+        </article>
+        <div className="transaction-headers">
+          <div className="transaction-header">Date</div>
+          <div className="transaction-header">Description</div>
+          <div className="transaction-header">Amount</div>
+          <div className="transaction-header">Balance</div>
+        </div>
+        {transactions.map((transaction) => (
+          <Collapse
+            key={transaction.id}
+            title={
+              <div className="transaction-summary">
+                <p>{transaction.date}</p>
+                <p>{transaction.description}</p>
+                <p>{transaction.amount}</p>
+                <p>{transaction.balance}</p>
+              </div>
+            }
+          >
+            <div className="transaction-details">
+              <p>
+                <strong>Date:</strong> {transaction.date}
+              </p>
+              <p>
+                <strong>Description:</strong> {transaction.description}
+              </p>
+              <p>
+                <strong>Amount:</strong> {transaction.amount}
+              </p>
+              <p>
+                <strong>Balance:</strong> {transaction.balance}
+              </p>
+            </div>
+          </Collapse>
+        ))}
       </main>
       <Footer />
     </>

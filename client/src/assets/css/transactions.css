@@ -26,7 +26,48 @@
     text-transform: uppercase;
 }
 .transaction-table tr {
- font-size: 14px;
+ font-size: 20px;
  color: black;
 
+}
+
+.transaction-summary{
+    color:black;
+    display:flex;
+    justify-content: center;
+    font-size: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.transaction-headers{
+    display:flex;
+    justify-content:center;
+    gap:23%;
+    color:black;
+}
+.account_description_transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: black;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    text-align: left;
+}
+.balance{
+font-size: 50px;
+}
+.balance_price {
+    font-size: 20px;
 }

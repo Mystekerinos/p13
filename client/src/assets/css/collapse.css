@@ -1,0 +1,66 @@
+.list-item {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  margin-top: 20px;
+  position: relative;
+  align-items: center;
+}
+.list-item p {
+  color: black;
+  font-size: 14px;
+  margin-right:21px;
+  margin-left:21px;
+  text-transform: capitalize;
+}
+.list-item .icon-wrapper svg {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+.list-item.reverse svg {
+  transform: rotate(0deg);
+}
+.list-item .icon-wrapper {
+  cursor: pointer;
+  height: auto;
+  width: auto;
+}
+.list-item .icon-wrapper.reverse {
+  transform: rotate(360deg);
+}
+@media screen and (max-width: 992px) {
+  .list-item {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .list-item p {
+    font-size: 15px !important;
+  }
+  .list-item .collapsed-text p {
+    font-size: 15px;
+    margin: 0%;
+  }
+  .list-item .icon-wrapper svg {
+    height: 15px !important;
+    width: 14px !important;
+  }
+  .list-item .list-wrapper {
+    width: 100%;
+    top: -16px;
+    left: 0;
+  }
+}
+.list-item.reverse svg {
+  transform: rotate(180deg);
+}
+@media screen and (max-width: 650px) {
+  .list-item {
+    width: 90%;
+  }
+  .list-item .collapsed-text {
+    width: 90%;
+  }
+}/*# sourceMappingURL=Collapse.css.map */
