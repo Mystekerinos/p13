@@ -30,6 +30,13 @@
 .list-item .icon-wrapper.reverse {
   transform: rotate(360deg);
 }
+.transaction-details{
+  display:flex;
+  background-color: #FFFFFF;
+  width:80%;
+  color:black;
+}
+
 @media screen and (max-width: 992px) {
   .list-item {
     width: 80%;
@@ -63,4 +70,4 @@
   .list-item .collapsed-text {
     width: 90%;
   }
-}/*# sourceMappingURL=Collapse.css.map */
+}

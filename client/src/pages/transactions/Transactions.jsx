@@ -3,6 +3,7 @@ import Footer from "../../components/footer/Footer";
 import "../../assets/css/transactions.css";
 import Navbar from "../../components/navBar/NavBar";
 import Collapse from "../../components/collapse/Collapse";
+import { useSelector } from "react-redux";
 
 const transactions = [
   {
@@ -58,9 +59,17 @@ const accountTransactions = [
 ];
 const Transactions = () => {
   const accountTransaction = accountTransactions[0];
+  const profile = useSelector((state) => state.user.profile);
+  if (!profile) {
+    return null;
+  }
+  const displayName = `${profile.body?.firstName || profile?.firstName} ${
+    profile.body?.lastName || profile?.lastName
+  }`;
+
   return (
     <>
-      <Navbar />
+      <Navbar displayName={displayName} />
       <main className="main bg-dark">
         <article className="account">
           <div className="account_description_transactions">

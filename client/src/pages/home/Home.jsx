@@ -4,11 +4,19 @@ import iconSecurity from "../../assets/images/icon-security.png";
 import "../../assets/css/home.css";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navBar/NavBar";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const profile = useSelector((state) => state.user.profile);
+  if (!profile) {
+    return null;
+  }
+  const displayName = `${profile.body?.firstName || profile?.firstName} ${
+    profile.body?.lastName || profile?.lastName
+  }`;
   return (
     <>
-      <Navbar />
+      <Navbar displayName={displayName} />
       <main>
         <div className="hero">
           <section className="hero-content">

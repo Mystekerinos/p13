@@ -34,16 +34,16 @@ const ProfilePage = () => {
     });
   };
   if (profile) {
+    const displayName = `${profile.body?.firstName || profile?.firstName} ${
+      profile.body?.lastName || profile?.lastName
+    }`;
     return (
       <>
-        <Navbar
-          showLogout={true}
-          displayName={
-            (profile.body?.firstName || profile?.lastName) +
-            " " +
-            (profile.body?.lastName || profile?.lastName)
-          }
-        />
+        {console.log(
+          "profile.body?.firstName || profile?.lastName",
+          profile.body?.firstName || profile?.lastName
+        )}
+        <Navbar showLogout={true} displayName={displayName} />
         {error && <p className="error-message">Erreur : {error}</p>}
         <div className="MainProfile">
           <div className="header">
@@ -63,7 +63,7 @@ const ProfilePage = () => {
             />
           </div>
           <h2 className="sr-only">Comptes</h2>
-          <Account />
+          <Account displayName={displayName} />
         </div>
         <Footer />
       </>
