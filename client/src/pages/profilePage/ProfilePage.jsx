@@ -10,6 +10,7 @@ import Account from "../../components/account/Account";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navBar/NavBar";
 import EditName from "../../components/editName/EditName";
+import "../../assets/css/profilePage.css";
 
 const ProfilePage = () => {
   const profile = useSelector((state) => state.user.profile);
@@ -46,22 +47,20 @@ const ProfilePage = () => {
         <Navbar showLogout={true} displayName={displayName} />
         {error && <p className="error-message">Erreur : {error}</p>}
         <div className="MainProfile">
-          <div className="header">
-            <h1>
-              Welcome Back
-              <br />
-              <div className="Name">
-                {(profile.body?.firstName || profile?.lastName) +
-                  " " +
-                  (profile.body?.lastName || profile?.lastName)}
-              </div>
-              <br />
-            </h1>
+          <h1>
+            Welcome Back
+            <br />
+            <div className="Name">
+              {(profile.body?.firstName || profile?.lastName) +
+                " " +
+                (profile.body?.lastName || profile?.lastName)}
+            </div>
+            <br />
             <EditName
               fullName={profile.body?.firstName + " " + profile.body?.lastName}
               onSave={handleSaveName}
             />
-          </div>
+          </h1>
           <h2 className="sr-only">Comptes</h2>
           <Account displayName={displayName} />
         </div>

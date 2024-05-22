@@ -71,49 +71,54 @@ const Transactions = () => {
     <>
       <Navbar displayName={displayName} />
       <main className="main bg-dark">
-        <article className="account">
+        <div className="account_transaction">
           <div className="account_description_transactions">
-            <h3>argent bank {accountTransaction.name}</h3>
-            <p className="balance">
+            <div>argent bank {accountTransaction.name}</div>
+            <div className="balance_transaction">
               $ {accountTransaction.balance.toLocaleString("en")}
-            </p>
-            <p className="balance_price">{accountTransaction.type} balance</p>
-          </div>
-        </article>
-        <div className="transaction-headers">
-          <div className="transaction-header">Date</div>
-          <div className="transaction-header">Description</div>
-          <div className="transaction-header">Amount</div>
-          <div className="transaction-header">Balance</div>
-        </div>
-        {transactions.map((transaction) => (
-          <Collapse
-            key={transaction.id}
-            title={
-              <div className="transaction-summary">
-                <p>{transaction.date}</p>
-                <p>{transaction.description}</p>
-                <p>{transaction.amount}</p>
-                <p>{transaction.balance}</p>
-              </div>
-            }
-          >
-            <div className="transaction-details">
-              <p>
-                <strong>Date:</strong> {transaction.date}
-              </p>
-              <p>
-                <strong>Description:</strong> {transaction.description}
-              </p>
-              <p>
-                <strong>Amount:</strong> {transaction.amount}
-              </p>
-              <p>
-                <strong>Balance:</strong> {transaction.balance}
-              </p>
             </div>
-          </Collapse>
-        ))}
+            <div className="balance_price">
+              {accountTransaction.type} balance
+            </div>
+          </div>
+        </div>
+        <div className="transaction-body">
+          <div className="transaction-headers">
+            <div className="transaction-header">Date</div>
+            <div className="transaction-header">Description</div>
+            <div className="transaction-header">Amount</div>
+            <div className="transaction-header">Balance</div>
+          </div>
+
+          {transactions.map((transaction) => (
+            <Collapse
+              key={transaction.id}
+              title={
+                <div className="transaction-summary">
+                  <p>{transaction.date}</p>
+                  <p>{transaction.description}</p>
+                  <p>{transaction.amount}</p>
+                  <p>{transaction.balance}</p>
+                </div>
+              }
+            >
+              <div className="transaction-details">
+                <p>
+                  <strong>Date:</strong> {transaction.date}
+                </p>
+                <p>
+                  <strong>Description:</strong> {transaction.description}
+                </p>
+                <p>
+                  <strong>Amount:</strong> {transaction.amount}
+                </p>
+                <p>
+                  <strong>Balance:</strong> {transaction.balance}
+                </p>
+              </div>
+            </Collapse>
+          ))}
+        </div>
       </main>
       <Footer />
     </>

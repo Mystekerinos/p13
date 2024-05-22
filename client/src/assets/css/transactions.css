@@ -31,6 +31,26 @@
 
 }
 
+.account_transaction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 97%;
+    text-align: left;
+    margin-left: 23px;
+    margin-right: 23px;
+}
+
+.balance_transaction{
+  margin-left:23px;
+  margin-right:23px;
+  font-weight:bold;
+  font-size:30px;
+}
+
 .transaction-summary{
     color:black;
     display:flex;
@@ -51,6 +71,8 @@
     align-items: flex-start;
     gap: 0.5rem;
     color: black;
+    margin-top:23px;
+    margin-bottom:23px;
 }
 
 .account {
@@ -69,5 +91,13 @@
 font-size: 50px;
 }
 .balance_price {
-    font-size: 20px;
+font-size: 15px;
+margin-left:39px;
+margin-right: 31px;
+}
+
+.transaction-body{
+margin-top:23px;
+margin-bottom: 23px;
+
 }

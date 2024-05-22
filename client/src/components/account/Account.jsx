@@ -33,17 +33,21 @@ const Account = () => {
       {accounts.map((account) => (
         <article key={account.id} className="account">
           <div className="account_description">
-            <h3>argent bank {account.name}</h3>
-            <p>$ {account.balance.toLocaleString("en")}</p>
-            <p>{account.type} balance</p>
+            <div className="account_information">
+              <div>argent bank {account.name}</div>
+              <p className="currency">
+                $ {account.balance.toLocaleString("en")}
+              </p>
+              <p className="available_bank">{account.type} balance</p>
+            </div>
+            <button
+              className="account_btn"
+              type="button"
+              onClick={handleViewTransactions}
+            >
+              View transactions
+            </button>
           </div>
-          <button
-            className="account_btn"
-            type="button"
-            onClick={handleViewTransactions}
-          >
-            View transactions
-          </button>
         </article>
       ))}
     </>
