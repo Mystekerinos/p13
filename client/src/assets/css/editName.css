@@ -1,7 +1,17 @@
+
 .input {
   width: 100px;
+  background-color: white;
+  /* Fond blanc pour les champs d'entrée */
+  color: gray;
+  /* Texte gris */
+  border: 2px solid gray;
+  /* Bordure grise */
+  padding: 5px;
+  /* Ajouter du rembourrage pour un meilleur aspect */
+  border-radius: 5px;
+  /* Bordures arrondies */
 }
-
 .input-placeholder {
   color: #c4c4c4;
 }
@@ -23,19 +33,25 @@
 .buttons {
   width: 70px;
   padding: 5px;
-  color: blue;
+  color: purple;
+  /* Couleur du texte en violet */
   background-color: white;
+  /* Couleur de fond blanche */
+  border: 2px solid purple;
+  /* Bordure violette */
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
-  border: none;
+  border-radius: 5px;
+  /* Pour un effet carré aux coins arrondis */
 }
 
 .buttons:hover {
   transform: scale(1.06);
 }
 
-.buttons-focus {
-  box-shadow: 0px 0px 3px 1px blue;
+.buttons:focus {
+  box-shadow: 0px 0px 3px 1px purple;
+  /* Box shadow violet */
 }
 
 .button-container {
@@ -47,8 +63,8 @@
 }
 
 .edit-button {
-  border-color: #00bc77;
-  background-color: #00bc77;
+  border-color: #3709e5;
+  background-color: #3709e5;
   color: #fff;
   font-weight: bold;
   padding: 10px;

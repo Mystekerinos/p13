@@ -12,6 +12,13 @@
     margin-bottom: 2rem;
 }
 
+.currency{
+    font-size:34px;
+    font-weight: bold;
+    margin-top:4px;
+    margin-bottom:0px;
+}
+
 .account {
     display: flex;
     flex-direction: column;
@@ -19,7 +26,7 @@
     align-items: center;
     border: 1px solid black;
     background-color: #fff;
-    width: 80%;
+    width: 97%;
     margin-bottom: 2rem;
     padding: 1.5rem;
     text-align: left;
@@ -27,10 +34,12 @@
 
 .account_description {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 0.5rem;
     width: 100%;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .account_title {
@@ -54,7 +63,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 1rem;
-    background-color: #00bc77;
+    background-color: #3709e5;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -63,4 +72,12 @@
 
 .account_btn:hover {
     background-color: #007f56;
+}
+
+.bankName{
+    font-size:1.17em;
+}
+.available_bank{
+    margin-top:0px;
+    margin-bottom: 0px;
 }
