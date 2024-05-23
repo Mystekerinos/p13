@@ -102,20 +102,18 @@ const Transactions = () => {
                 </div>
               }
             >
-              <div className="transaction-details">
-                <p>
-                  <strong>Date:</strong> {transaction.date}
-                </p>
-                <p>
-                  <strong>Description:</strong> {transaction.description}
-                </p>
-                <p>
-                  <strong>Amount:</strong> {transaction.amount}
-                </p>
-                <p>
-                  <strong>Balance:</strong> {transaction.balance}
-                </p>
-              </div>
+              <p>
+                <strong>Date:</strong> {transaction.date}
+              </p>
+              <p>
+                <strong>Description:</strong> {transaction.description}
+              </p>
+              <p>
+                <strong>Amount:</strong> {transaction.amount}
+              </p>
+              <p>
+                <strong>Balance:</strong> {transaction.balance}
+              </p>
             </Collapse>
           ))}
         </div>

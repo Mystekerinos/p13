@@ -25,19 +25,21 @@ function Collapse(props) {
         }
         onClick={toggle}
       >
-        <div className="transaction-summary">{props.title}</div>
         <div className="collapse-icon-chevron">
           <IconChevron />
         </div>
+        {props.title}
       </div>
       <div className="list-item-collapsed-text">
         {open && (
           <div>
             {TransactionsText.map((transaction) => (
               <div className="transaction-details" key={transaction.id}>
-                <p>{transaction.type}</p>
-                <p>{transaction.category}</p>
-                <p>{transaction.notes}</p>
+                <div className="transaction-type">{transaction.type}</div>
+                <div className="transaction-category">
+                  {transaction.category}
+                </div>
+                <div className="transaction-notes">{transaction.notes}</div>
               </div>
             ))}
           </div>

@@ -33,8 +33,23 @@
 .transaction-details{
   display:flex;
   background-color: #FFFFFF;
-  width:80%;
   color:black;
+  flex-direction: column;
+}
+.transaction-type{
+  padding-top: 20px;
+  padding-left:98px;
+  padding-bottom:20px;
+}
+.transaction-category {
+  padding-top: 20px;
+  padding-left: 98px;
+  padding-bottom: 20px;
+}
+.transaction-notes {
+  padding-top: 20px;
+  padding-left: 98px;
+  
 }
 
 @media screen and (max-width: 992px) {

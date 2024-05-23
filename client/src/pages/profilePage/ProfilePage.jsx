@@ -47,7 +47,7 @@ const ProfilePage = () => {
         <Navbar showLogout={true} displayName={displayName} />
         {error && <p className="error-message">Erreur : {error}</p>}
         <div className="MainProfile">
-          <h1>
+          <h1 className="Welcome-back">
             Welcome Back
             <br />
             <div className="Name">
