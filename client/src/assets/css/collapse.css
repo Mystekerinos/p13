@@ -2,17 +2,17 @@
   background-color: #FFFFFF;
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
-  padding: 0 5%;
   margin-top: 20px;
   position: relative;
   align-items: center;
+  padding-right:150px;
+  padding-left:150px;
 }
 .list-item p {
   color: black;
   font-size: 14px;
   margin-right:21px;
-  margin-left:21px;
+  margin-left:69px;
   text-transform: capitalize;
 }
 .list-item .icon-wrapper svg {
@@ -38,17 +38,17 @@
 }
 .transaction-type{
   padding-top: 20px;
-  padding-left:98px;
+  padding-left:237px;
   padding-bottom:20px;
 }
 .transaction-category {
   padding-top: 20px;
-  padding-left: 98px;
+  padding-left: 237px;
   padding-bottom: 20px;
 }
 .transaction-notes {
   padding-top: 20px;
-  padding-left: 98px;
+  padding-left: 237px;
   
 }
 

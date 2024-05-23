@@ -56,14 +56,15 @@
     display:flex;
     justify-content: center;
     font-size: 10px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 6px;
+    margin-left: 62px;
 }
 .transaction-headers{
     display:flex;
     justify-content:center;
-    gap:23%;
+    gap:15%;
     color:black;
+    margin-left:157px;
 }
 .account_description_transactions {
     display: flex;
