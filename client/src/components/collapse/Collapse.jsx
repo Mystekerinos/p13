@@ -1,6 +1,7 @@
 import "../../assets/css/collapse.css";
 import { useState } from "react";
 import IconChevron from "../icons/Chevron";
+import Pencil from "../icons/Pencil";
 
 const TransactionsText = [
   {
@@ -35,9 +36,13 @@ function Collapse(props) {
           <div>
             {TransactionsText.map((transaction) => (
               <div className="transaction-details" key={transaction.id}>
-                <div className="transaction-type">{transaction.type}</div>
+                <div className="transaction-type">
+                  {transaction.type}
+                  <Pencil />
+                </div>
                 <div className="transaction-category">
                   {transaction.category}
+                  <Pencil />
                 </div>
                 <div className="transaction-notes">{transaction.notes}</div>
               </div>
