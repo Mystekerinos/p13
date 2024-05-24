@@ -9,14 +9,17 @@ import "../../assets/css/navBar.css";
 const Navbar = ({ displayName }) => {
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Hook pour la navigation
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    // Redirection vers la page de login après la déconnexion
     navigate("/login");
   };
-  console.log("displayName", displayName);
+
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <nav className="main-nav">
       <Link to="/" className="main-nav-logo">
@@ -30,13 +33,21 @@ const Navbar = ({ displayName }) => {
       <div className="nav-item">
         {token !== null ? (
           <>
-            <div className="main-nav-item">
+            <div
+              className="main-nav-item"
+              onClick={handleProfileClick}
+              style={{ cursor: "pointer" }}
+            >
               <CircleUserRound />
               <i className="fa fa-user-circle"></i>
               {displayName}
             </div>
 
-            <div className="main-nav-item" onClick={handleLogout}>
+            <div
+              className="main-nav-item"
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
               <LogOut />
               <div className="main-nav-link">Sign out</div>
             </div>
