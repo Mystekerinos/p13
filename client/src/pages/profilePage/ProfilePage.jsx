@@ -51,7 +51,7 @@ const ProfilePage = () => {
             Welcome Back
             <br />
             <div className="Name">
-              {(profile.body?.firstName || profile?.lastName) +
+              {(profile.body?.firstName || profile?.firstName) +
                 " " +
                 (profile.body?.lastName || profile?.lastName)}
             </div>
