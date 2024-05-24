@@ -18,7 +18,7 @@ export const loginUser = async (email, password) => {
     // Gérez les erreurs de connexion ici
     return {
       success: false,
-      message: "Une erreur s'est produite lors de la connexion.",
+      message: "Vos coordonnées n'ont pas été reconnues. Veuillez recommencer",
     };
   }
 };

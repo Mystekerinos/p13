@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "../../assets/css/editName.css";
 
-const EditName = ({ fullName, onSave }) => {
+const EditName = ({ firstName, lastName, onSave }) => {
   const [editing, setEditing] = useState(false);
-  const [inputFirstName, setInputFirstName] = useState(
-    fullName ? fullName.split(" ")[0] : ""
-  );
-  const [inputLastName, setInputLastName] = useState(
-    fullName ? fullName.split(" ")[1] : ""
-  );
+  const [inputFirstName, setInputFirstName] = useState(firstName);
+  const [inputLastName, setInputLastName] = useState(lastName);
 
   const handleSave = () => {
     const firstName = `${inputFirstName}`;
@@ -18,8 +14,9 @@ const EditName = ({ fullName, onSave }) => {
   };
 
   const handleCancel = () => {
-    setInputFirstName(fullName ? fullName.split(" ")[0] : "");
-    setInputLastName(fullName ? fullName.split(" ")[1] : "");
+    setInputFirstName(firstName);
+    setInputLastName(lastName);
+    setEditing(false);
   };
 
   const handleKeyPress = (event) => {
@@ -44,7 +41,7 @@ const EditName = ({ fullName, onSave }) => {
         <input
           className="input"
           type="text"
-          placeholder="Tony"
+          placeholder=""
           value={inputFirstName}
           onChange={(e) => setInputFirstName(e.target.value)}
           onKeyDown={handleKeyPress}
@@ -52,7 +49,7 @@ const EditName = ({ fullName, onSave }) => {
         <input
           className="input"
           type="text"
-          placeholder="Jarvis"
+          placeholder=""
           value={inputLastName}
           onChange={(e) => setInputLastName(e.target.value)}
           onKeyDown={handleKeyPress}

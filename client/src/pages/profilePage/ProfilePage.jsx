@@ -57,7 +57,8 @@ const ProfilePage = () => {
             </div>
             <br />
             <EditName
-              fullName={profile.body?.firstName + " " + profile.body?.lastName}
+              firstName={profile.body?.firstName || profile?.firstName}
+              lastName={profile.body?.lastName || profile?.lastName}
               onSave={handleSaveName}
             />
           </h1>

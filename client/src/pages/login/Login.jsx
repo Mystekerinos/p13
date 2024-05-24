@@ -43,7 +43,9 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
-      setCustomError("Une erreur s'est produite lors de la connexion.");
+      setCustomError(
+        "Vos coordonnées n'ont pas été reconnues. Veuillez recommencer"
+      );
     } finally {
       setIsSubmitting(false);
     }
