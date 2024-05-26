@@ -1,4 +1,3 @@
-// userActions.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   loginUser as loginUserApi,
@@ -18,11 +17,8 @@ export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
   async (_, { getState }) => {
     // Utilisez getState pour obtenir le token depuis l'état global
-
     const token = getState().user.token;
-    console.log("token", token, getState().user);
     const profile = await getUserProfileApi(token);
-    console.log("profile", profile);
     return { token, profile };
   }
 );

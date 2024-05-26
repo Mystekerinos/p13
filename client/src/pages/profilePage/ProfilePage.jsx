@@ -28,22 +28,17 @@ const ProfilePage = () => {
   }, [dispatch, navigate, token]);
 
   const handleSaveName = (firstName, lastName) => {
-    // Dispatch the updateUserProfile action
     dispatch(updateUserProfile({ firstName, lastName })).then(() => {
-      // Update the store only after the backend update is successful
       dispatch(updateName({ firstName, lastName }));
     });
   };
+
   if (profile) {
     const displayName = `${profile.body?.firstName || profile?.firstName} ${
       profile.body?.lastName || profile?.lastName
     }`;
     return (
       <>
-        {console.log(
-          "profile.body?.firstName || profile?.lastName",
-          profile.body?.firstName || profile?.lastName
-        )}
         <Navbar showLogout={true} displayName={displayName} />
         {error && <p className="error-message">Erreur : {error}</p>}
         <div className="MainProfile">
