@@ -64,7 +64,14 @@
     justify-content:center;
     gap:15%;
     color:black;
-    margin-left:157px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.transaction-headers-container{
+    margin-left: 90px;
+    margin-right: 6px;
+    display: flex;
+    justify-content: center;
 }
 .account_description_transactions {
     display: flex;
@@ -74,6 +81,18 @@
     color: black;
     margin-top:23px;
     margin-bottom:23px;
+}
+.date{
+    width:215px;
+}
+.description {
+    width: 150px;
+}
+.amount {
+    width: 100px;
+}
+.balance {
+    width: 10px;
 }
 
 .account {
@@ -87,9 +106,7 @@
     padding: 1.5rem;
     text-align: left;
 }
-.balance{
-font-size: 50px;
-}
+
 .balance_price {
 font-size: 15px;
 margin-left:39px;

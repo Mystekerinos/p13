@@ -84,10 +84,12 @@ const Transactions = () => {
         </div>
         <div className="transaction-body">
           <div className="transaction-headers">
-            <div className="transaction-header">Date</div>
-            <div className="transaction-header">Description</div>
-            <div className="transaction-header">Amount</div>
-            <div className="transaction-header">Balance</div>
+            <div className="transaction-headers-container">
+              <div className="transaction-header date">Date</div>
+              <div className="transaction-header description">Description</div>
+              <div className="transaction-header amount">Amount</div>
+              <div className="transaction-header balance">Balance</div>
+            </div>
           </div>
 
           {transactions.map((transaction) => (
@@ -95,10 +97,18 @@ const Transactions = () => {
               key={transaction.id}
               title={
                 <div className="transaction-summary">
-                  <p>{transaction.date}</p>
-                  <p>{transaction.description}</p>
-                  <p>{transaction.amount}</p>
-                  <p>{transaction.balance}</p>
+                  <div className="date">
+                    <p>{transaction.date}</p>
+                  </div>
+                  <div className="description">
+                    <p>{transaction.description}</p>
+                  </div>
+                  <div className="amount">
+                    <p>{transaction.amount}</p>
+                  </div>
+                  <div className="balance">
+                    <p>{transaction.balance}</p>
+                  </div>
                 </div>
               }
             >

@@ -5,14 +5,11 @@
   margin-top: 20px;
   position: relative;
   align-items: center;
-  padding-right:150px;
   padding-left:150px;
 }
 .list-item p {
   color: black;
   font-size: 14px;
-  margin-right:21px;
-  margin-left:69px;
   text-transform: capitalize;
 }
 .list-item .icon-wrapper svg {
@@ -35,20 +32,28 @@
   background-color: #FFFFFF;
   color:black;
   flex-direction: column;
+  width:100%;
 }
 .transaction-type{
-  padding-top: 20px;
-  padding-left:298px;
-  padding-bottom:20px;
+background-color: #FFFFFF;
+  border-radius: 5px;
+  display: flex;
+  margin-top: 20px;
+  position: relative;
+  align-items: center;
+  padding-left: 233px;
+  font-size:14px;
 }
 .transaction-category {
   padding-top: 20px;
-  padding-left: 298px;
+  padding-left: 233px;
   padding-bottom: 20px;
+  font-size:14px;
 }
 .transaction-notes {
-  padding-top: 20px;
-  padding-left: 298px;
+  font-size: 14px;
+  padding-bottom:10px;
+  padding-left: 233px;
   
 }
 
@@ -56,6 +61,10 @@
   .list-item {
     width: 80%;
   }
+    .transaction-details {
+ 
+      width: 97%;
+    }
 }
 @media screen and (max-width: 768px) {
   .list-item p {
