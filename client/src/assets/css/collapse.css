@@ -58,13 +58,32 @@ background-color: #FFFFFF;
 }
 
 @media screen and (max-width: 992px) {
-  .list-item {
-    width: 80%;
+  .transaction-body{
+    width:90%;
   }
     .transaction-details {
  
-      width: 97%;
+      width: 100%;
     }
+   
+        .list-item {
+        padding-left: 0px;
+        display: flex;
+        justify-content: center;
+        }
+        .transaction-type {
+   
+        padding-left: 170px;
+        font-size: 14px;
+                }
+        .transaction-category {
+
+        padding-left: 170px;
+                }
+        .transaction-notes {
+        font-size: 14px;
+        padding-left: 170px;
+        }
 }
 @media screen and (max-width: 768px) {
   .list-item p {
@@ -83,15 +102,62 @@ background-color: #FFFFFF;
     top: -16px;
     left: 0;
   }
-}
 .list-item.reverse svg {
   transform: rotate(180deg);
 }
-@media screen and (max-width: 650px) {
+ .transaction-body {
+   width: 94%;
+ }
+}
+@media screen and (max-width: 683px) {
   .list-item {
     width: 90%;
   }
+    .list-item p {
+      font-size: 12px !important;
+    }
   .list-item .collapsed-text {
     width: 90%;
   }
+     .transaction-details {
+       width: 90%;
+     }
+}
+@media screen and (max-width: 545px) {
+
+  .list-item p {
+    font-size: 12px !important;
+  }
+    .list-item {
+      width: 100%;
+    }
+            .transaction-details {
+              width: 100%;
+            }
+
+}
+
+@media screen and (max-width: 390px) {
+
+  .list-item p {
+    font-size: 8px !important;
+  }
+    .transaction-type {
+      padding-left: 91px;
+      font-size: 8px;
+    }
+
+    .transaction-category {
+      padding-left: 91px;
+      font-size: 8px;
+        }
+    .transaction-notes {
+      padding-left: 91px;
+      font-size: 8px;
+        
+                }
+    .transaction-details {
+     width: 100%;
+                    }
+
 }
