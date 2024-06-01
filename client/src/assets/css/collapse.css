@@ -135,6 +135,21 @@ background-color: #FFFFFF;
               width: 100%;
             }
 
+  .transaction-type {
+    padding-left: 38px;
+    font-size: 10px;
+   }
+        .transaction-category {
+    
+            padding-left: 38px;
+              font-size: 10px;
+        }
+    
+        .transaction-notes {
+          padding-left: 38px;
+            font-size: 10px;
+        }
+
 }
 
 @media screen and (max-width: 390px) {

@@ -166,6 +166,13 @@ margin-bottom: 23px;
              padding-left: 150px;
              padding-right: 150px;
          }
+         .transaction-summary{
+            margin-left:8px;
+         }
+         .transaction-headers-container{
+            margin-left: 36px;
+         }
+     
 
 }
 
