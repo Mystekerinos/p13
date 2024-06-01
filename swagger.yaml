@@ -123,22 +123,6 @@ security:
   - BearerAuth: []
 paths:
   /transactions:
-    get:
-      summary: "Récupère les transactions de tous les utilisateurs"
-      description: "Retourne une liste de toutes les transactions disponibles pour les utilisateurs."
-      security:
-        - BearerAuth: []
-      responses:
-        "200":
-          description: "Liste des transactions récupérée avec succès."
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Transaction"
-        "500":
-          description: "Erreur interne du serveur."
     post:
       summary: "Crée une nouvelle transaction"
       description: "Ajoute une nouvelle transaction à la base de données."
@@ -162,29 +146,6 @@ paths:
         "500":
           description: "Erreur interne du serveur."
   /transactions/{transactionId}:
-    get:
-      summary: "Récupère une transaction spécifique"
-      description: "Retourne une transaction spécifique en utilisant son ID."
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          description: "ID de la transaction à récupérer."
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Transaction récupérée avec succès."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Transaction"
-        "404":
-          description: "Transaction non trouvée."
-        "500":
-          description: "Erreur interne du serveur."
     put:
       summary: "Met à jour une transaction spécifique"
       description: "Met à jour les détails d'une transaction existante."
@@ -259,31 +220,5 @@ paths:
                   $ref: "#/components/schemas/Transaction"
         "404":
           description: "Compte non trouvé."
-        "500":
-          description: "Erreur interne du serveur."
-  /transactions/user/{userId}:
-    get:
-      summary: "Récupère les transactions d'un utilisateur spécifique"
-      description: "Retourne toutes les transactions effectuées par un utilisateur spécifique."
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: "ID de l'utilisateur dont les transactions doivent être récupérées."
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Liste des transactions de l'utilisateur récupérée avec succès."
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Transaction"
-        "404":
-          description: "Utilisateur non trouvé."
         "500":
           description: "Erreur interne du serveur."
