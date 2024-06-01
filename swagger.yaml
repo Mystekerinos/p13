@@ -43,13 +43,12 @@ components:
           format: float
           description: "Solde après la transaction."
       example:
-        id: "1"
-        accountId: "123"
-        userId: "456"
-        date: "2023-06-20"
-        description: "Golden Sun Bakery"
-        amount: 5
-        balance: 2082.79
+        accountId: "number"
+        userId: "number"
+        date: "date"
+        description: "string"
+        amount: number
+        balance: number
     NewTransaction:
       type: object
       required:
@@ -82,12 +81,12 @@ components:
           format: float
           description: "Solde après la transaction."
       example:
-        accountId: "123"
-        userId: "456"
-        date: "2023-06-20"
-        description: "Golden Sun Bakery"
-        amount: 5
-        balance: 2082.79
+        accountId: "number"
+        userId: "number"
+        date: "date"
+        description: "string"
+        amount: number
+        balance: number
     UpdateTransaction:
       type: object
       properties:
@@ -113,12 +112,12 @@ components:
           format: float
           description: "Solde après la transaction."
       example:
-        accountId: "123"
-        userId: "456"
-        date: "2023-06-20"
-        description: "Golden Sun Bakery"
-        amount: 5
-        balance: 2082.79
+        accountId: "number"
+        userId: "number"
+        date: "date"
+        description: "string"
+        amount: number
+        balance: number
 security:
   - BearerAuth: []
 paths:
