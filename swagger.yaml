@@ -90,12 +90,9 @@ components:
     UpdateTransaction:
       type: object
       properties:
-        accountId:
+        transactionId:
           type: string
-          description: "ID du compte associé à la transaction."
-        userId:
-          type: string
-          description: "ID de l'utilisateur ayant effectué la transaction."
+          description: "ID unique de la transaction."
         date:
           type: string
           format: date
@@ -112,12 +109,31 @@ components:
           format: float
           description: "Solde après la transaction."
       example:
-        accountId: "number"
-        userId: "number"
+        transactionId: "string"
         date: "date"
         description: "string"
         amount: number
         balance: number
+    TransactionsGroupedByAccount:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: "ID du compte."
+        transactions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Transaction"
+      example:
+        accountId: "number"
+        transactions:
+          - id: "string"
+            accountId: "number"
+            userId: "number"
+            date: "date"
+            description: "string"
+            amount: number
+            balance: number
 security:
   - BearerAuth: []
 paths:
@@ -150,13 +166,6 @@ paths:
       description: "Met à jour les détails d'une transaction existante."
       security:
         - BearerAuth: []
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          description: "ID de la transaction à mettre à jour."
-          schema:
-            type: string
       requestBody:
         required: true
         content:
@@ -195,29 +204,29 @@ paths:
           description: "Transaction non trouvée."
         "500":
           description: "Erreur interne du serveur."
-  /transactions/account/{accountId}:
+  /transactions/user/{userId}:
     get:
-      summary: "Récupère les transactions d'un compte spécifique"
-      description: "Retourne toutes les transactions associées à un compte spécifique."
+      summary: "Récupère les transactions d'un utilisateur regroupées par compte"
+      description: "Retourne toutes les transactions associées à un utilisateur, regroupées par compte."
       security:
         - BearerAuth: []
       parameters:
-        - name: accountId
+        - name: userId
           in: path
           required: true
-          description: "ID du compte dont les transactions doivent être récupérées."
+          description: "ID de l'utilisateur dont les transactions doivent être récupérées."
           schema:
             type: string
       responses:
         "200":
-          description: "Liste des transactions du compte récupérée avec succès."
+          description: "Liste des transactions de l'utilisateur regroupée par compte récupérée avec succès."
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Transaction"
+                  $ref: "#/components/schemas/TransactionsGroupedByAccount"
         "404":
-          description: "Compte non trouvé."
+          description: "Utilisateur non trouvé."
         "500":
           description: "Erreur interne du serveur."
