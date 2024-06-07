@@ -160,7 +160,7 @@ paths:
           description: "Requête invalide."
         "500":
           description: "Erreur interne du serveur."
-  /transactions/{transactionId}:
+  /transactions/updatetransaction:
     put:
       summary: "Met à jour une transaction spécifique"
       description: "Met à jour les détails d'une transaction existante."
@@ -185,6 +185,7 @@ paths:
           description: "Transaction non trouvée."
         "500":
           description: "Erreur interne du serveur."
+  /transactions/Delete/{transactionId}:
     delete:
       summary: "Supprime une transaction spécifique"
       description: "Supprime une transaction existante en utilisant son ID."
