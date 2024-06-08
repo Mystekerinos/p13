@@ -43,9 +43,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting form...");
       const response = await loginUser(email, password);
-      console.log("Login API response:", response);
       if (response.success) {
         dispatch(authenticateUser({ email, password }));
         if (rememberMe) {
@@ -71,7 +69,6 @@ const Login = () => {
   useEffect(() => {
     if (loginState.token) {
       navigate("/profile");
-      console.log("Navigating to profile page...");
     }
   }, [loginState.token, navigate]);
 

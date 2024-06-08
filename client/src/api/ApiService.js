@@ -10,8 +10,6 @@ export const loginUser = async (email, password) => {
       }
     );
     const jwtToken = response.data.body.token;
-    console.log("Token received from loginUser:", jwtToken);
-    // Stockez le token dans l'état global de votre application ici
     return { success: true, token: jwtToken };
   } catch (error) {
     console.error("Error logging in:", error);
@@ -25,7 +23,6 @@ export const loginUser = async (email, password) => {
 
 export const getUserProfile = async (jwtToken) => {
   try {
-    console.log("Token sent to getUserProfile:", jwtToken);
     const response = await axios.post(
       "http://localhost:3001/api/v1/user/profile",
       {},
