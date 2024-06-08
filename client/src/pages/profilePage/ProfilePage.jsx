@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -13,6 +13,9 @@ import EditName from "../../components/editName/EditName";
 import "../../assets/css/profilePage.css";
 
 const ProfilePage = () => {
+  const [initialFirstName, setInitialFirstName] = useState("");
+  const [initialLastName, setInitialLastName] = useState("");
+
   const profile = useSelector((state) => state.user.profile);
   const error = useSelector((state) => state.user.error);
   const token = useSelector((state) => state.user.token);
@@ -26,6 +29,13 @@ const ProfilePage = () => {
       dispatch(fetchUserProfile(token));
     }
   }, [dispatch, navigate, token]);
+
+  useEffect(() => {
+    if (profile) {
+      setInitialFirstName(profile.body?.firstName || profile?.firstName || "");
+      setInitialLastName(profile.body?.lastName || profile?.lastName || "");
+    }
+  }, [profile]);
 
   const handleSaveName = (firstName, lastName) => {
     dispatch(updateUserProfile({ firstName, lastName })).then(() => {
@@ -52,8 +62,8 @@ const ProfilePage = () => {
             </div>
             <br />
             <EditName
-              firstName={profile.body?.firstName || profile?.firstName}
-              lastName={profile.body?.lastName || profile?.lastName}
+              firstName={initialFirstName}
+              lastName={initialLastName}
               onSave={handleSaveName}
             />
           </h1>

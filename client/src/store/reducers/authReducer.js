@@ -44,7 +44,7 @@ const userSlice = createSlice({
         state.profile = action.payload.profile;
         state.profile.firstName = action.payload.profile.firstName;
         state.profile.lastName = action.payload.profile.lastName;
-        state.error = null; // Réinitialiser l'erreur
+        state.error = null;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.error = action.payload
