@@ -50,6 +50,7 @@ const ProfilePage = () => {
     return (
       <>
         <Navbar showLogout={true} displayName={displayName} />
+        {error && <p className="error-message">Erreur : {error}</p>}
         <div className="MainProfile">
           <h1 className="Welcome-back">
             Welcome Back
