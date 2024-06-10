@@ -13,7 +13,7 @@ export const loginUser = async (email, password) => {
     return { success: true, token: jwtToken };
   } catch (error) {
     console.error("Error logging in:", error);
-
+    // Gérez les erreurs de connexion ici
     return {
       success: false,
       message: "Vos coordonnées n'ont pas été reconnues. Veuillez recommencer",

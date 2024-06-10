@@ -16,6 +16,7 @@ export const authenticateUser = createAsyncThunk(
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
   async (_, { getState }) => {
+    // Utilisez getState pour obtenir le token depuis l'état global
     const token = getState().user.token;
     const profile = await getUserProfileApi(token);
     return { token, profile };
@@ -23,7 +24,9 @@ export const fetchUserProfile = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
+  "user/updateUserProfile",
   async (updatedProfile, { getState }) => {
+    // Utilisez getState pour obtenir le token depuis l'état global
     const token = getState().user.token;
     const profile = await updateUserProfileApi(token, updatedProfile);
     return { profile };
