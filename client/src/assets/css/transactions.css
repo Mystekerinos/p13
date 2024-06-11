@@ -1,7 +1,6 @@
 .main {
     padding: 20px;
     background-color: #f3f4f6;
-    /* Ajustez la couleur de fond si nécessaire */
 }
 
 .transaction-table {
@@ -11,7 +10,6 @@
 
 .transaction-table thead {
     background-color: #e0e4e8;
-    /* Couleur de l'en-tête du tableau */
 }
 
 .transaction-table th,
