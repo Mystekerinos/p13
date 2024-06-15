@@ -1,7 +1,10 @@
 openapi: "3.0.0"
 info:
-  title: "API de Transactions"
-  description: "Documentation de l'API pour gérer les transactions des utilisateurs."
+  title: "API de Transactions Client"
+  description: >
+    Documentation de l'API permettant aux clients de gérer leurs transactions personnelles.
+    Cette API permet aux utilisateurs de créer de nouvelles transactions, de mettre à jour des transactions existantes,
+    ainsi que de consulter les transactions regroupées par compte pour le mois en cours.
   version: "1.0.0"
 servers:
   - url: "http://api.example.com/v1"
@@ -42,100 +45,12 @@ components:
           type: number
           format: float
           description: "Solde après la transaction."
-      example:
-        accountId: "number"
-        userId: "number"
-        date: "date"
-        description: "string"
-        amount: number
-        balance: number
-    NewTransaction:
-      type: object
-      required:
-        - accountId
-        - userId
-        - date
-        - description
-        - amount
-        - balance
-      properties:
-        accountId:
+        categorie:
           type: string
-          description: "ID du compte associé à la transaction."
-        userId:
+          description: "Catégorie de la transaction."
+        note:
           type: string
-          description: "ID de l'utilisateur ayant effectué la transaction."
-        date:
-          type: string
-          format: date
-          description: "Date de la transaction."
-        description:
-          type: string
-          description: "Description de la transaction."
-        amount:
-          type: number
-          format: float
-          description: "Montant de la transaction."
-        balance:
-          type: number
-          format: float
-          description: "Solde après la transaction."
-      example:
-        accountId: "number"
-        userId: "number"
-        date: "date"
-        description: "string"
-        amount: number
-        balance: number
-    UpdateTransaction:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          description: "ID unique de la transaction."
-        date:
-          type: string
-          format: date
-          description: "Date de la transaction."
-        description:
-          type: string
-          description: "Description de la transaction."
-        amount:
-          type: number
-          format: float
-          description: "Montant de la transaction."
-        balance:
-          type: number
-          format: float
-          description: "Solde après la transaction."
-      example:
-        transactionId: "string"
-        date: "date"
-        description: "string"
-        amount: number
-        balance: number
-    TransactionsGroupedByAccount:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: "ID du compte."
-        transactions:
-          type: array
-          items:
-            $ref: "#/components/schemas/Transaction"
-      example:
-        accountId: "number"
-        transactions:
-          - id: "string"
-            accountId: "number"
-            userId: "number"
-            date: "date"
-            description: "string"
-            amount: number
-            balance: number
-security:
-  - BearerAuth: []
+          description: "Note associée à la transaction."
 paths:
   /transactions:
     post:
@@ -148,7 +63,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NewTransaction"
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: "Description de la transaction."
+                amount:
+                  type: number
+                  format: float
+                  description: "Montant de la transaction."
+                balance:
+                  type: number
+                  format: float
+                  description: "Solde après la transaction."
+                categorie:
+                  type: string
+                  description: "Catégorie de la transaction."
+                note:
+                  type: string
+                  description: "Note associée à la transaction."
+              required:
+                - description
+                - amount
+                - balance
+                - categorie
+                - note
       responses:
         "201":
           description: "Transaction créée avec succès."
@@ -160,18 +99,37 @@ paths:
           description: "Requête invalide."
         "500":
           description: "Erreur interne du serveur."
-  /transactions/updatetransaction:
+  /transactions/{transactionId}:
     put:
       summary: "Met à jour une transaction spécifique"
-      description: "Met à jour les détails d'une transaction existante."
+      description: >
+        Modifie une transaction spécifique en utilisant son ID.
+        Seuls les attributs "categorie" et "note" de la transaction peuvent être modifiés.
       security:
         - BearerAuth: []
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          description: "ID de la transaction à mettre à jour."
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateTransaction"
+              type: object
+              properties:
+                categorie:
+                  type: string
+                  description: "Nouvelle catégorie de la transaction."
+                note:
+                  type: string
+                  description: "Nouvelle note associée à la transaction."
+              required:
+                - categorie
+                - note
       responses:
         "200":
           description: "Transaction mise à jour avec succès."
@@ -185,49 +143,69 @@ paths:
           description: "Transaction non trouvée."
         "500":
           description: "Erreur interne du serveur."
-  /transactions/Delete/{transactionId}:
-    delete:
-      summary: "Supprime une transaction spécifique"
-      description: "Supprime une transaction existante en utilisant son ID."
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          description: "ID de la transaction à supprimer."
-          schema:
-            type: string
-      responses:
-        "204":
-          description: "Transaction supprimée avec succès."
-        "404":
-          description: "Transaction non trouvée."
-        "500":
-          description: "Erreur interne du serveur."
-  /transactions/user/{userId}:
+  /transactions/grouped:
     get:
-      summary: "Récupère les transactions d'un utilisateur regroupées par compte"
-      description: "Retourne toutes les transactions associées à un utilisateur, regroupées par compte."
+      summary: "Récupère les transactions regroupées par compte pour le mois en cours"
+      description: >
+        Retourne toutes les transactions regroupées par compte associées à l'utilisateur authentifié pour le mois en cours.
+        Les comptes sont déterminés automatiquement par le serveur.
       security:
         - BearerAuth: []
       parameters:
-        - name: userId
-          in: path
-          required: true
-          description: "ID de l'utilisateur dont les transactions doivent être récupérées."
+        - name: month
+          in: query
+          required: false
+          description: "Mois au format YYYY-MM (par défaut, le mois en cours)."
           schema:
             type: string
+            pattern: "^\\d{4}-\\d{2}$"
       responses:
         "200":
-          description: "Liste des transactions de l'utilisateur regroupée par compte récupérée avec succès."
+          description: "Transactions regroupées par compte pour le mois en cours récupérées avec succès."
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/TransactionsGroupedByAccount"
+                  type: object
+                  properties:
+                    accountId:
+                      type: string
+                      description: "ID du compte."
+                    transactions:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Transaction"
+        "500":
+          description: "Erreur interne du serveur."
+  /transactions/details:
+    post:
+      summary: "Récupère les détails d'une transaction spécifique"
+      description: "Récupère les détails d'une transaction spécifique en utilisant son ID."
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactionId:
+                  type: string
+                  description: "ID de la transaction à récupérer."
+              required:
+                - transactionId
+      responses:
+        "200":
+          description: "Détails de la transaction récupérés avec succès."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "400":
+          description: "Requête invalide."
         "404":
-          description: "Utilisateur non trouvé."
+          description: "Transaction non trouvée."
         "500":
           description: "Erreur interne du serveur."
