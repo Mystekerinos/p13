@@ -23,15 +23,15 @@ Description :
 
 GET /transactions/grouped : Cette opération permet de récupérer toutes les transactions regroupées par compte pour le mois en cours. Vous pouvez filtrer les résultats en spécifiant un mois différent via le paramètre month.
 
-GET /transactions/{transactionId} : Utilisé pour récupérer les détails spécifiques d'une transaction en fournissant son ID dans l'URL. Cela vous permet de consulter les détails d'une transaction particulière sans la modifier.
+GET /transactions/detail/{transactionId} : Utilisé pour récupérer les détails spécifiques d'une transaction en fournissant son ID dans l'URL. Cela vous permet de consulter les détails d'une transaction particulière sans la modifier.
 
 Exemple :
 
 Utilisez GET /transactions/grouped pour voir un résumé de toutes vos transactions par compte ce mois-ci.
-Utilisez GET /transactions/{transactionId} pour obtenir des détails spécifiques sur une transaction en particulier. 3. PUT
+Utilisez GET /transactions/detail/{transactionId} pour obtenir des détails spécifiques sur une transaction en particulier. 3. PUT
 Rôle : Le verbe HTTP PUT est utilisé pour mettre à jour une ressource existante sur le serveur. Il remplace entièrement la ressource existante par la nouvelle version fournie.
 
-Endpoint : /transactions/{transactionId}
+Endpoint : /transactions/detail/{transactionId}
 
 Description : Lorsque vous envoyez une requête PUT à /transactions/{transactionId}, vous devez fournir les nouvelles informations de la transaction dans le corps de la requête au format JSON, y compris la catégorie et la note. Cette opération met à jour les détails d'une transaction spécifique identifiée par {transactionId}.
 

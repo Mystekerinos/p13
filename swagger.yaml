@@ -151,14 +151,6 @@ paths:
         Les comptes sont déterminés automatiquement par le serveur.
       security:
         - BearerAuth: []
-      parameters:
-        - name: month
-          in: query
-          required: false
-          description: "Mois au format YYYY-MM (par défaut, le mois en cours)."
-          schema:
-            type: string
-            pattern: "^\\d{4}-\\d{2}$"
       responses:
         "200":
           description: "Transactions regroupées par compte pour le mois en cours récupérées avec succès."
@@ -178,24 +170,19 @@ paths:
                         $ref: "#/components/schemas/Transaction"
         "500":
           description: "Erreur interne du serveur."
-  /transactions/details:
-    post:
+  /transactions/detail/{transactionId}:
+    get:
       summary: "Récupère les détails d'une transaction spécifique"
       description: "Récupère les détails d'une transaction spécifique en utilisant son ID."
       security:
         - BearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                transactionId:
-                  type: string
-                  description: "ID de la transaction à récupérer."
-              required:
-                - transactionId
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          description: "ID de la transaction à récupérer."
+          schema:
+            type: string
       responses:
         "200":
           description: "Détails de la transaction récupérés avec succès."
