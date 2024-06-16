@@ -27,7 +27,7 @@ GET /transactions/detail/{transactionId} : Utilisé pour récupérer les détail
 
 Exemple :
 
-Utilisez GET /transactions/grouped/{accountId}
+Utilisez GET /transactions/grouped
 pour voir un résumé de toutes vos transactions par compte ce mois-ci.
 Utilisez GET /transactions/detail/{transactionId} pour obtenir des détails spécifiques sur une transaction en particulier. 3. PUT
 Rôle : Le verbe HTTP PUT est utilisé pour mettre à jour une ressource existante sur le serveur. Il remplace entièrement la ressource existante par la nouvelle version fournie.
