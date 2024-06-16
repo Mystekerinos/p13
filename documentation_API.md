@@ -17,17 +17,17 @@ Exemple : Vous pouvez utiliser POST pour enregistrer une nouvelle dépense ou un
 
 Endpoints :
 
-/transactions/grouped: Utilisé pour récupérer les transactions regroupées par compte pour le mois en cours.
+/transactions/grouped/{accountId}: Utilisé pour récupérer les transactions regroupées par compte pour le mois en cours.
 /transactions/{transactionId}: Utilisé pour récupérer les détails spécifiques d'une transaction à partir de son ID.
 Description :
 
-GET /transactions/grouped : Cette opération permet de récupérer toutes les transactions regroupées par compte pour le mois en cours. Vous pouvez filtrer les résultats en spécifiant un mois différent via le paramètre month.
+GET /transactions/grouped/{accountId} : Cette opération permet de récupérer toutes les transactions regroupées par compte pour le mois en cours. Vous pouvez filtrer les résultats en spécifiant un mois différent via le paramètre month.
 
 GET /transactions/detail/{transactionId} : Utilisé pour récupérer les détails spécifiques d'une transaction en fournissant son ID dans l'URL. Cela vous permet de consulter les détails d'une transaction particulière sans la modifier.
 
 Exemple :
 
-Utilisez GET /transactions/grouped
+Utilisez GET /transactions/grouped/{accountId}
 pour voir un résumé de toutes vos transactions par compte ce mois-ci.
 Utilisez GET /transactions/detail/{transactionId} pour obtenir des détails spécifiques sur une transaction en particulier. 3. PUT
 Rôle : Le verbe HTTP PUT est utilisé pour mettre à jour une ressource existante sur le serveur. Il remplace entièrement la ressource existante par la nouvelle version fournie.
