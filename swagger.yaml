@@ -3,7 +3,7 @@ info:
   title: "API de Transactions Client"
   description: >
     Documentation de l'API permettant aux clients de gérer leurs transactions personnelles.
-    Cette API permet aux utilisateurs de créer de nouvelles transactions, de mettre à jour des transactions existantes,
+    Cette API permet aux utilisateurs de mettre à jour des transactions existantes,
     ainsi que de consulter les transactions regroupées par compte pour le mois en cours.
   version: "1.0.0"
 servers:
@@ -52,53 +52,6 @@ components:
           type: string
           description: "Note associée à la transaction."
 paths:
-  /transactions:
-    post:
-      summary: "Crée une nouvelle transaction"
-      description: "Ajoute une nouvelle transaction à la base de données."
-      security:
-        - BearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                description:
-                  type: string
-                  description: "Description de la transaction."
-                amount:
-                  type: number
-                  format: float
-                  description: "Montant de la transaction."
-                balance:
-                  type: number
-                  format: float
-                  description: "Solde après la transaction."
-                categorie:
-                  type: string
-                  description: "Catégorie de la transaction."
-                note:
-                  type: string
-                  description: "Note associée à la transaction."
-              required:
-                - description
-                - amount
-                - balance
-                - categorie
-                - note
-      responses:
-        "201":
-          description: "Transaction créée avec succès."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Transaction"
-        "400":
-          description: "Requête invalide."
-        "500":
-          description: "Erreur interne du serveur."
   /transactions/{transactionId}:
     put:
       summary: "Met à jour une transaction spécifique"
@@ -143,7 +96,7 @@ paths:
           description: "Transaction non trouvée."
         "500":
           description: "Erreur interne du serveur."
-  /transactions/grouped:
+  /transactions/grouped/{accountId}:
     get:
       summary: "Récupère les transactions regroupées par compte pour le mois en cours"
       description: >
@@ -151,6 +104,13 @@ paths:
         Les comptes sont déterminés automatiquement par le serveur.
       security:
         - BearerAuth: []
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: "ID du compte pour lequel récupérer les transactions regroupées."
+          schema:
+            type: string
       responses:
         "200":
           description: "Transactions regroupées par compte pour le mois en cours récupérées avec succès."
