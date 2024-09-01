@@ -16,23 +16,23 @@ Formation Développeur d'application - JavaScript React
 Technologies and Dependencies
 
 
-Javascript
+.Javascript
 
-CSS
+.CSS
 
-Visual Studio code
+.Visual Studio code
 
-Npm 
+.Npm 
 
-NodeJS 
+.NodeJS 
 
-React
+.React
 
-React-router-dom 
+.React-router-dom 
 
-Axios 
+.Axios 
 
-Redux Toolkit 
+.Redux Toolkit 
 
 
 Créer une application web complète et responsive avec React permettant aux clients de se connecter et de gérer leurs comptes et leur profil.
