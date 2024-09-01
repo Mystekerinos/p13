@@ -34,6 +34,27 @@ Technologies and Dependencies
 
 .Redux Toolkit 
 
+Voici la traduction en français :
+
+**📝 cahier des charges**  
+
+
+- Utiliser React
+  
+- Utiliser l'API fournie
+  
+- Utiliser Redux et Redux ToolKit
+  
+- Concevoir un design responsive
+   
+- Modéliser une API
+  
+- Interagir avec une API en utilisant Postman
+  
+- Utiliser Swagger et OpenAPI pour créer une documentation complète de l'API
+   
+- Utiliser Git et GitHub pour le versionnage  
+
 
 Créer une application web complète et responsive avec React permettant aux clients de se connecter et de gérer leurs comptes et leur profil.
 fournir un document décrivant les endpoints API proposés pour les transactions, en utilisant Swagger / OpenAPI, et permettant :
