@@ -17,13 +17,21 @@ Technologies and Dependencies
 
 
 Javascript
+
 CSS
+
 Visual Studio code
+
 Npm 
+
 NodeJS 
-React 
+
+React
+
 React-router-dom 
+
 Axios 
+
 Redux Toolkit 
 
 
