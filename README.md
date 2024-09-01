@@ -1,4 +1,22 @@
-# Project #10 - Argent Bank API
+
+
+<img width="844" alt="Capture d’écran 2024-09-01 à 20 44 38" src="https://github.com/user-attachments/assets/6d8fbf93-d395-4e67-9140-4dd32c3f079c">
+
+Formation Développeur d'application - JavaScript React
+
+
+
+
+# P13 -Argent Bank - Utilisez une API pour un compte utilisateur bancaire avec React
+<img width="832" alt="Capture d’écran 2024-09-01 à 22 05 02" src="https://github.com/user-attachments/assets/17209e86-2863-4cdc-a452-22b889ed0666">
+
+
+
+Créer une application web complète et responsive avec React permettant aux clients de se connecter et de gérer leurs comptes et leur profil.
+fournir un document décrivant les endpoints API proposés pour les transactions, en utilisant Swagger / OpenAPI, et permettant :
+de visualiser toutes leurs transactions pour le mois en cours, groupées par compte ;
+de visualiser les détails d'une transaction dans une autre vue ;
+d'ajouter, de modifier ou de supprimer des informations sur une transaction.
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
