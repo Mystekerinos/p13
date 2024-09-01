@@ -14,6 +14,8 @@ Formation Développeur d'application - JavaScript React
 
 
 Technologies and Dependencies
+
+
 Javascript
 CSS
 Visual Studio code
