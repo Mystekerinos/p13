@@ -13,7 +13,7 @@ Formation Développeur d'application - JavaScript React
 
 
 
-Technologies and Dependencies
+**Technologies and Dependencies**
 
 
 .Javascript
