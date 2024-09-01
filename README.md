@@ -12,6 +12,19 @@ Formation Développeur d'application - JavaScript React
 
 
 
+
+Technologies and Dependencies
+Javascript
+CSS
+Visual Studio code
+Npm 
+NodeJS 
+React 
+React-router-dom 
+Axios 
+Redux Toolkit 
+
+
 Créer une application web complète et responsive avec React permettant aux clients de se connecter et de gérer leurs comptes et leur profil.
 fournir un document décrivant les endpoints API proposés pour les transactions, en utilisant Swagger / OpenAPI, et permettant :
 de visualiser toutes leurs transactions pour le mois en cours, groupées par compte ;
